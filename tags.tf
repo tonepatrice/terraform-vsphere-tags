@@ -3,50 +3,58 @@
 # ===================== #
 
 # Tag Categories #
-variable "tag_categories" {
-  depends_on = [resource, "vsphere_tag_category", "tag_categories"]
-  type = map(object({
-    name        = string
-    description = string
-  }))
-  default = {
-    location            = {
-      name        = "Location"
-      description = "Location tags"
-    }
-    bu                  = {
-      name        = "BU"
-      description = "Business Unit tags"
-    }
-    server_type         = {
-      name        = "Server Type"
-      description = "Server Type tags"
-    }
-    server_tier         = {
-      name        = "Server Tier"
-      description = "Server Tier tags"
-    }
-    aci_tenant          = {
-      name        = "ACI Tenant"
-      description = "ACI Tenant tags"
-    }
-    application_owner   = {
-      name        = "Application Owner"
-      description = "Application Owner tags"
-    }
-    common_service      = {
-      name        = "Common Service"
-      description = "Common Service tags"
-    }
-    application         = {
-      name        = "Application"
-      description = "Application tags"
-    }
-    environment         = {
-      name        = "Environment"
-      description = "Environment tags"
-    }
-  }
+resource "vsphere_tag_category" "location_category" {
+  name        = "Location"
+  cardinality = "SINGLE"
+  description = "Location tags"
+}
+
+resource "vsphere_tag_category" "bu_category" {
+  name        = "BU"
+  cardinality = "SINGLE"
+  description = "Business Unit tags"
+}
+
+resource "vsphere_tag_category" "server_type_category" {
+  name        = "Server Type"
+  cardinality = "SINGLE"
+  description = "Server Type tags"
+}
+
+resource "vsphere_tag_category" "server_tier_category" {
+  name        = "Server Tier"
+  cardinality = "SINGLE"
+  description = "Server Tier tags"
+}
+
+resource "vsphere_tag_category" "aci_tenant_category" {
+  name        = "ACI Tenant"
+  cardinality = "SINGLE"
+  description = "ACI Tenant tags"
+}
+
+resource "vsphere_tag_category" "application_owner_category" {
+  name        = "Application Owner"
+  cardinality = "SINGLE"
+  description = "Application Owner tags"
+}
+
+resource "vsphere_tag_category" "common_service_category" {
+  name        = "Common Service"
+  cardinality = "SINGLE"
+  description = "Common Service tags"
+}
+
+resource "vsphere_tag_category" "application_category" {
+  name        = "Application"
+  cardinality = "SINGLE"
+  description = "Application tags"
+}
+
+resource "vsphere_tag_category" "environment_category" {
+  name        = "Environment"
+  cardinality = "SINGLE"
+  description = "Environment tags"
 }
 
 /* resource "vsphere_tag" "location_tag" {
