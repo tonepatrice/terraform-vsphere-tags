@@ -102,3 +102,62 @@ variable "vm-domain" {
   description = "Linux virtual machine domain name for the machine. This, along with host_name, make up the FQDN of the virtual machine"  description = "Linux virtual machine domain name"
   default     = ""
 }
+
+
+
+variable "location" {
+  type        = string
+  description = "Location tag"
+  default     = ""
+}
+
+variable "bu" {
+  type        = string
+  description = "Business Unit tag"
+  default     = ""
+}
+
+variable "server_type" {
+  type        = string
+  description = "Server Type tag"
+  default     = ""
+}
+
+variable "server_tier" {
+  type        = string
+  description = "Server Tier tag"
+  default     = ""
+}
+
+variable "aci_tenant" {
+  type        = string
+  description = "ACI Tenant tag"
+  default     = ""
+}
+
+variable "application_owner" {
+  type        = string
+  description = "Application Owner tag"
+  default     = ""
+}
+
+variable "common_service" {
+  type        = string
+  description = "Common Service tag"
+  default     = ""
+}
+
+variable "application" {
+  type        = string
+  description = "Application tag"
+  default     = ""
+}
+
+variable "environment" {
+  type        = string
+  description = "Environment tag"
+  default     = ""
+}
+
+
+

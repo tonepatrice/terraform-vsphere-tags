@@ -3,50 +3,94 @@
 # ===================== #
 
 # Tag Categories #
-resource "vsphere_tag_category" "tag-environment" {
-    name        = "Environment"
-    cardinality = "SINGLE"
-    associable_types = [
-        "VirtualMachine"
-    ]
+variable "tag_categories" {
+  depends_on = [resource, "vsphere_tag_category", "tag_categories"]
+  type = map(object({
+    name        = string
+    description = string
+  }))
+  default = {
+    location            = {
+      name        = "Location"
+      description = "Location tags"
+    }
+    bu                  = {
+      name        = "BU"
+      description = "Business Unit tags"
+    }
+    server_type         = {
+      name        = "Server Type"
+      description = "Server Type tags"
+    }
+    server_tier         = {
+      name        = "Server Tier"
+      description = "Server Tier tags"
+    }
+    aci_tenant          = {
+      name        = "ACI Tenant"
+      description = "ACI Tenant tags"
+    }
+    application_owner   = {
+      name        = "Application Owner"
+      description = "Application Owner tags"
+    }
+    common_service      = {
+      name        = "Common Service"
+      description = "Common Service tags"
+    }
+    application         = {
+      name        = "Application"
+      description = "Application tags"
+    }
+    environment         = {
+      name        = "Environment"
+      description = "Environment tags"
+    }
+  }
 }
 
-resource "vsphere_tag_category" "tag-application" {
-    name        = "Application"
-    cardinality = "SINGLE"
-    associable_types = [
-        "VirtualMachine"
-    ]
+/* resource "vsphere_tag" "location_tag" {
+  name        = var.location
+  category_id = vsphere_tag_category.location_category.id
 }
 
-# Tag Environment Variables #
-resource "vsphere_tag" "tag-environment-dev" {
-    name        = "dev"
-    category_id = "${vsphere_tag_category.tag-environment.id}"
-    description = "Development Environment"
+resource "vsphere_tag" "bu_tag" {
+  name        = var.bu
+  category_id = vsphere_tag_category.bu_category.id
 }
 
-resource "vsphere_tag" "tag-environment-test" {
-    name        = "test"
-    category_id = "${vsphere_tag_category.tag-environment.id}"
-    description = "Test Environment"
+resource "vsphere_tag" "server_type_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.server_type_category.id
 }
 
-resource "vsphere_tag" "tag-environment-prod" {
-    name        = "prod"
-    category_id = "${vsphere_tag_category.tag-environment.id}"
-    description = "Production Environment"
+
+resource "vsphere_tag" "server_tier_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.server_tier_category.id
 }
 
-# Tag Application Variables #
-resource "vsphere_tag" "tag-application-k8s" {
-    name        = "kubernetes"
-    category_id = "${vsphere_tag_category.tag-application.id}"
-    description = "Kubernetes Infrastructure"
+resource "vsphere_tag" "aci_tenant_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.aci_tenant_category.id
 }
 
-resource "vsphere_tag" "tag-application-web-server" {
-    name        = "web server"
-    category_id = "${vsphere_tag_category.tag-application.id}"
-    description = "Web Server"
+resource "vsphere_tag" "application_owner_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.application_owner_category.id
 }
+
+resource "vsphere_tag" "common_service_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.common_service_category.id
+}
+
+resource "vsphere_tag" "application_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.application_category.id
+}
+
+resource "vsphere_tag" "environment_tag" {
+  name        = var.server_type
+  category_id = vsphere_tag_category.environment_category.id
+} */
